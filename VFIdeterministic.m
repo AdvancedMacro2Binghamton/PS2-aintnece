@@ -45,12 +45,22 @@ while dis > tol
     v_guess = vfn(i,:);
 end
 pol_indx(:,i)=I;
+dis=1;
 end
 
-g = k(pol_indx(:,2)); % policy function
+gh = k(pol_indx(:,1));% policy function
+gl = k(pol_indx(:,2));
 
-plot(k,vfn(1,:))
+plot(k,vfn)
 figure
-plot(k,g)
+plot(k,[gh;gl])
 
+P=Q^1000; % invariant distribution
+z=random(makedist('Binomial','N',1000,'P',P(1,1))) % At generator
+for i=1:1000
+    if z(i)==1
+        At(i)=1.1
+    else At(i)=0.678
+    end
+end
 
