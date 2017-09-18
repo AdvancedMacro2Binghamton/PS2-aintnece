@@ -47,9 +47,9 @@ end
 pol_indx(:,i)=I;
 end
 
-g = k(pol_indx(:,2)); % policy function
+g = k(pol_indx); % policy function
 
-plot(k,vfn(1,:))
+plot(k,vfn)
 figure
 plot(k,g)
 
