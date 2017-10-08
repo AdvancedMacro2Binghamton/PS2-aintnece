@@ -16,7 +16,8 @@ k = linspace(k_min, k_max, num_k+1);
 k(1)=[];
 k_mat = repmat(k', [1 num_k]); % this will be useful in a bit
 sd=1;
-while sd(1)>0.018 | sd(2)>0.018
+psd=10;
+while psd(1)>1.8 || psd(2)>1.8
  A=0.5*(A+1);
 %Simulate A
 consl = A(1)*k_mat .^ alpha + (1 - delta) * k_mat - k_mat'; 
@@ -89,5 +90,6 @@ for i = 1:2
         end
     end
 end
-sd=std(Y,0,2)
+sd=std(Y,0,2);
+psd=100.*sd./mean(Y,2);
 end

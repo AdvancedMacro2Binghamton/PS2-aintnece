@@ -56,8 +56,7 @@ gh = k(pol_indx(:,2));
 
 k_star=((1+delta*beta-beta)./(beta*alpha.*A)).^(1/(alpha-1));
 [k_a,indexl]=min(abs(k_star(1)-k));
-[k_a,indexh]=min(abs(k_star(2)-k));
-k_a=[gl(indexl),gh(indexh)];
+[k_1,indexh]=min(abs(k_star(2)-k));
 At(1,1)=A(1);
 At(2,1)=A(2);
 for j = 1:2
@@ -81,7 +80,7 @@ for j = 1:2
 end
 Y=zeros(2,5000);
 for i = 1:2
-    K=k_a(i);
+    K=k_ss(i);
     for j = 1:5000
         [c index] = min(abs(K-k));
         if At(i,j)==A(1)
@@ -93,5 +92,4 @@ for i = 1:2
         end
     end
 end
-psd=100.*std(Y,0,2)./mean(Y,2);
 end
